@@ -1,24 +1,25 @@
 const list = document.querySelector("ul")
 const input = document.querySelector("input")
-const add = ()=> {
+const addItem = ()=> {
     const newItem = document.createElement("li");
-    const removeButton = document.createElement("button.remove");
-    //removeButton.className = "remove";
-    const editButton = document.createElement("button.edit");
-    //editButton.className= "edit";
+    const removeButton = document.createElement("button");
+    removeButton.className = "remove";
+    const editButton = document.createElement("button");
+    editButton.className= "edit";
     removeButton.innerText = "X";
     editButton.innerText = "Edit";
-    newItem.textContent = input.value;
+    const textSpan = document.createElement("span");
+    textSpan.innerText = input.value;
+    newItem.appendChild(textSpan);
     newItem.appendChild(removeButton);
     newItem.appendChild(editButton);
-    removeButton.setAttribute("onclick", "remove(this)");
-    editButton.setAttribute("onclick", "edit(this)");
+    removeButton.setAttribute("onclick", "removeItem(this)");
+    editButton.setAttribute("onclick", "editItem(this)");
     document.querySelector("ul").appendChild(newItem)
 }
-const remove = (this) => {
-    this.parentElement.remove()
+const removeItem = (btn) => {
+    btn.parentElement.remove();
 }
-const edit = (this) => {
-    this.parentElement.innerText = input.value
+const editItem = (btn) => {
+    btn.parentElement.querySelector("span").innerText = input.value;
 }
-document.querySelector("form")
